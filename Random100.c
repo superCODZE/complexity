@@ -18,7 +18,7 @@ int main(void)
 
     long Random100[100];                   // long, pas int
 
-    FILE *f = fopen("primes1.txt", "r");
+    FILE *f = fopen("prime_number.txt", "r");
     if (f == NULL) {
         printf("Error opening file.\n");
         return 1;
@@ -35,17 +35,20 @@ int main(void)
 
     RandomVector(Random100, 100);
 
-   FILE *out = fopen("Random100.txt", "w");   // "w" = créer / écrire
+   FILE *out = fopen("data/Random100.txt", "w");   // "w" = créer / écrire
    if (out == NULL) {
       printf("Error creating Random100.txt\n");
      return 1;
     }
 
-   for (int i = 0; i < 100; i++)
-     fprintf(out, "%ld\n", Random100[i]);   // un nombre par ligne
+   for (int i = 0; i < 100; i++) {
+     fprintf(out, "%ld\n", Random100[i]);
+        // un nombre par ligne
+   }
 
-   fclose(out);
    
+   fclose(out);
+   printf("last prime number in Random100.txt: %ld\n", Random100[99]);
    
     return 0;
 }

@@ -18,33 +18,33 @@ int main(void)
 {
     srand(time(NULL));
 
-    static long tab[MAX];
-    long test1[100];
-    int n = 0;
-    long p;
+    static long long tab[MAX];
+    long  test1[100];
+    long  count = 0;
+    long  p;
 
-    FILE *f = fopen("primes1.txt", "r");
+    FILE *f = fopen("prime_number.txt", "r");
     if (f == NULL) {
-        printf("Error opening file.\n");
+        printf("Error opening prime_number.txt.\n");
         return 1;
     }
 
     while (fscanf(f, "%ld", &p) == 1) {
         if (p > 1000000) break;         // fichier trié : on peut s'arrêter
-        if (p >= 1000 && n < MAX)
-            tab[n++] = p;
+        if (p >= 1000 && count < MAX)
+            tab[count++] = p;
     }
     fclose(f);
 
-    printf("%d premiers dans [1000, 1000000]\n", n);
+    printf("%d premiers dans [1000, 1000000]\n", count);
 
-    RandomVector(tab, n, 100);
+    RandomVector(tab, count, 100);
     
     for (int i = 0; i < 100; i++) {
         test1[i] = tab[i];
     }
 
-    FILE *out = fopen("test1.txt", "w");   // "w" = créer / écrire
+    FILE *out = fopen("data/test1.txt", "w");   // "w" = créer / écrire
    if (out == NULL) {
       printf("Error creating test1.txt\n");
      return 1;

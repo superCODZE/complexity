@@ -18,7 +18,7 @@ int main(void)
 
     long Random1000[1000];                   // long, pas int
 
-    FILE *f = fopen("primes1.txt", "r");
+    FILE *f = fopen("prime_number.txt", "r");
     if (f == NULL) {
         printf("Error opening file.\n");
         return 1;
@@ -35,7 +35,7 @@ int main(void)
 
     RandomVector(Random1000, 1000);
 
-   FILE *out = fopen("Random1000.txt", "w");   // "w" = créer / écrire
+   FILE *out = fopen("data/Random1000.txt", "w");   // "w" = créer / écrire
    if (out == NULL) {
       printf("Error creating Random100.txt\n");
      return 1;
