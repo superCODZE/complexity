@@ -1,66 +1,61 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-#define MAXI 50847534   // taille du tableau (le plus grand intervalle a 586081 premiers)
+int main(void){
 
-void RandomVector(long *tab, int n, int k)
-{
-    for (int i = 0; i < k; i++) {
-        int j = i + rand() % (n - i);   // j dans [i, n-1]
-        long tmp = tab[i];              // vrai échange
-        tab[i] = tab[j];
-        tab[j] = tmp;
+    FILE* out0 = fopen("data/test3_3digits.txt", "w");
+
+    if (out0 == NULL) {
+        printf("Error opening test3_3digits.txt\n");
+        return 1;
     }
-}
+    
 
-int main(void) {
+    fprintf(out0, "300 452 999 123 758 147 632 753 951 139\n"); 
 
-    srand(time(NULL));
+    fclose(out0);
 
-    char filename[100];
-    long long Sup = 1000;
-    long long Inf = 100;
-    long long count = 0;
-    long long p;
-    static long test3[MAXI];    // grand tableau, "static" obligatoire
+    FILE* out1 = fopen("data/test3_6digits.txt", "w");
 
-    FILE *f = fopen("prime_number.txt", "r");
-
-    if (f == NULL) {
-        printf("Error opening prime_number.txt\n");
+    if (out1 == NULL) {
+        printf("Error opening test6_6digits.txt\n");
         return 1;
     }
 
-    for (int i = 0; i < 4; i++) {
+    fprintf(out1, "300000 452000 999999 123456 758321 147852 632147 753951 951753 139258\n");
 
-        while (fscanf(f, "%ld", &p) == 1) {
-            if (p >= Sup) break;                  // fichier trié : on s'arrête
-            if (p >= Inf && count < MAXI)
-                test3[count++] = p;               // on garde le nombre
-        }
+    fclose(out1);
 
-        RandomVector(test3, count, 10);           // tirage de 10 nombres
+    FILE* out2 = fopen("data/test3_9digits.txt", "w");
 
-        sprintf(filename, "data/test3_%ld-%ld.txt", Inf, Sup - 1);
-        FILE *out = fopen(filename, "w");
-        if (out == NULL) {
-            printf("Error creating %s\n", filename);
-            return 1;
-        }
-
-        for (int j = 0; j < 10; j++)
-            fprintf(out, "%ld\n", test3[j]);      // un nombre par ligne
-
-        fclose(out);
-        printf("%s : %ld premiers disponibles\n", filename, count);
-
-        count = 0;          // on vide le tableau pour l'intervalle suivant
-        Sup *= 1000;
-        Inf *= 1000;
-        rewind(f);          // relire le fichier depuis le début
+    if (out2 == NULL) {
+        printf("Error opening test3_9digits.txt\n");
+        return 1;
     }
 
-    fclose(f);
+    fprintf(out2, "300000000 452000000 999999999 123456789 758321456 147852963 632147852 753951456 951753258 139258147\n");
+
+    fclose(out2);
+
+
+    FILE* out3 = fopen("data/test3_12digits.txt", "w");
+
+    if (out3 == NULL) {
+        printf("Error opening test3_12digits.txt\n");
+        return 1;
+    }
+
+    fprintf(out3, "300000000000 452000000000 999999999999 123456789012 758321456789 147852963456 632147852963 753951456789 951753258467 139258147654\n");
+
+    fclose(out3);
+
+    printf("test3_3digits.txt, test3_6digits.txt, test3_9digits.txt, test3_12digits.txt created successfully.\n");
+
+
+
+   
     return 0;
+
+
 }

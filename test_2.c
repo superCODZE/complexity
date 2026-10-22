@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAXI 600000     // taille du tableau (le plus grand intervalle a 586081 premiers)
+#define MAXI  50847534 
 
 void RandomVector(long *tab, int n, int k)
 {
     for (int i = 0; i < k; i++) {
-        int j = i + rand() % (n - i);   // j dans [i, n-1]
-        long tmp = tab[i];              // vrai échange
+        int j = i + rand() % (n - i);   
+        long tmp = tab[i];              
         tab[i] = tab[j];
         tab[j] = tmp;
     }
@@ -32,12 +32,13 @@ int main(void) {
         return 1;
     }
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 7; i++) {
 
         while (fscanf(f, "%ld", &p) == 1) {
             if (p >= Sup) break;                  // fichier trié : on s'arrête
             if (p >= Inf && count < MAXI)
-                test2[count++] = p;               // on garde le nombre
+                test2[count] = p; 
+                count++;              // on garde le nombre
         }
 
         RandomVector(test2, count, 10);           // tirage de 10 nombres
@@ -50,10 +51,14 @@ int main(void) {
         }
 
         for (int j = 0; j < 10; j++)
-            fprintf(out, "%ld\n", test2[j]);      // un nombre par ligne
+         fprintf(out, "%ld\n", test2[j]);      // un nombre par ligne
+
+
+
+
 
         fclose(out);
-        printf("%s : %ld premiers disponibles\n", filename, count);
+        printf("%s : %ld premiers disponibles\n", filename);
 
         count = 0;          // on vide le tableau pour l'intervalle suivant
         Sup *= 10;

@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 78330      // il y a 78330 premiers dans [1000, 1000000]
+#define MAX 78330      
 
-void RandomVector(long *tab, int n, int k)
+void RandomVector(long long *tab, int n, int k)
 {
     for (int i = 0; i < k; i++) {
-        int j = i + rand() % (n - i);   // j dans [i, n-1]
-        long tmp = tab[i];              // vrai échange
+        int j = i + rand() % (n - i);   
+        long long tmp = tab[i];              
         tab[i] = tab[j];
         tab[j] = tmp;
     }
@@ -19,41 +19,48 @@ int main(void)
     srand(time(NULL));
 
     static long long tab[MAX];
-    long  test1[100];
-    long  count = 0;
-    long  p;
+    long count = 0;
+    long p;
+    
 
     FILE *f = fopen("prime_number.txt", "r");
     if (f == NULL) {
         printf("Error opening prime_number.txt.\n");
         return 1;
     }
+   
 
     while (fscanf(f, "%ld", &p) == 1) {
-        if (p > 1000000) break;         // fichier trié : on peut s'arrêter
+        if (p > 1000000) break;         
         if (p >= 1000 && count < MAX)
-            tab[count++] = p;
+            tab[count] = p;
+
+
+            count++;
+        
     }
     fclose(f);
 
-    printf("%d premiers dans [1000, 1000000]\n", count);
-
+   
     RandomVector(tab, count, 100);
     
-    for (int i = 0; i < 100; i++) {
-        test1[i] = tab[i];
-    }
+   
 
-    FILE *out = fopen("data/test1.txt", "w");   // "w" = créer / écrire
+    FILE *out = fopen("data/test1.txt", "w");   
    if (out == NULL) {
       printf("Error creating test1.txt\n");
      return 1;
     }
 
-   for (int i = 0; i < 100; i++)
-     fprintf(out, "%ld\n", test1[i]);   // un nombre par ligne
+   for (int i = 0; i < 100; i++){
+     fprintf(out, "%lld\n", tab[i]);
+        // un nombre par ligne
+    
+   }
 
    fclose(out);
+
+   printf("test1.txt created successfully.\n");
     
     
 

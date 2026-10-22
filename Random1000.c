@@ -42,8 +42,9 @@ int main(void)
     }
 
    for (int i = 0; i < 1000; i++)
-     fprintf(out, "%ld\n", Random1000[i]);   // un nombre par ligne
+     fprintf(out, "%ld\n", Random1000[i]);  
 
    fclose(out);
+   printf("Random1000.txt created successfully.\n");
     return 0;
 }

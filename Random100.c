@@ -48,7 +48,7 @@ int main(void)
 
    
    fclose(out);
-   printf("last prime number in Random100.txt: %ld\n", Random100[99]);
+   printf("Random100.txt created successfully.\n");
    
     return 0;
 }
