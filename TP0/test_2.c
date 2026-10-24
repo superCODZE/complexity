@@ -67,7 +67,7 @@ int main(void) {
 
 
         fclose(out);
-        printf("%s : %ld premiers disponibles\n", filename);
+        printf("%s : 10 premiers disponibles\n", filename);
 
         // Réinitialise les bornes et le compteur pour l'intervalle suivant.
         count = 0;          // on vide le tableau pour l'intervalle suivant
