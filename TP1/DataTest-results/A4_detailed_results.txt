@@ -1,0 +1,1 @@
+A4 | TOTAL for 2 numbers = 0.000000 s

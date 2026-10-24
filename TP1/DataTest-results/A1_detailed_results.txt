@@ -1,0 +1,1 @@
+A1 | TOTAL for 2 numbers = 3.878000 s
