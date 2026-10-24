@@ -4,6 +4,7 @@
 
 int main(void){
 
+    // Crée le fichier contenant 10 nombres premiers à trois chiffres.
     FILE* out0 = fopen("data/test3_3digits.txt", "w");
 
     if (out0 == NULL) {
@@ -12,10 +13,12 @@ int main(void){
     }
     
 
+    // Écrit les valeurs de test dans le fichier.
     fprintf(out0, "101 103 107 109 113 127 131 137 139 149\n"); 
 
     fclose(out0);
 
+    // Crée le fichier contenant 10 nombres premiers à six chiffres.
     FILE* out1 = fopen("data/test3_6digits.txt", "w");
 
     if (out1 == NULL) {
@@ -23,10 +26,12 @@ int main(void){
         return 1;
     }
 
+    // Écrit les valeurs de test dans le fichier.
     fprintf(out1, "100003 100019 100043 100049 100057 100069 100103 100109 100129 100151\n");
 
     fclose(out1);
 
+    // Crée le fichier contenant 10 nombres premiers à neuf chiffres.
     FILE* out2 = fopen("data/test3_9digits.txt", "w");
 
     if (out2 == NULL) {
@@ -34,11 +39,13 @@ int main(void){
         return 1;
     }
 
+    // Écrit les valeurs de test dans le fichier.
     fprintf(out2, "100000007, 100000037, 100000039, 100000049, 100000073, 100000081, 100000123, 100000127, 100000193, 100000213\n");
 
     fclose(out2);
 
 
+    // Crée le fichier contenant 10 nombres premiers à douze chiffres.
     FILE* out3 = fopen("data/test3_12digits.txt", "w");
 
     if (out3 == NULL) {
@@ -46,6 +53,7 @@ int main(void){
         return 1;
     }
 
+    // Écrit les valeurs de test dans le fichier.
     fprintf(out3, "100000000003, 100000000019, 100000000057, 100000000063, 100000000069, 100000000073, 100000000091, 100000000103, 100000000129, 100000000171\n");
 
     fclose(out3);
