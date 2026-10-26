@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Mélange aléatoirement les N valeurs du tableau avec la méthode de Fisher-Yates.
+// Randomly shuffle the N array values using the Fisher-Yates method.
 void RandomVector(long *tab, int N)          // long*
 {
     for (int i = 0; i < N; i++) {
-        // Choisit une position au hasard parmi les éléments restants.
-        int j = i + rand() % (N - i);        // j dans [i, N-1]
-        long tmp = tab[i];                   // vrai échange
+        // Choose a random position among the remaining elements.
+        int j = i + rand() % (N - i);        // j in [i, N-1]
+        long tmp = tab[i];                   // actual swap
         tab[i] = tab[j];
         tab[j] = tmp;
     }
@@ -16,19 +16,19 @@ void RandomVector(long *tab, int N)          // long*
 
 int main(void)
 {
-    // Initialise le générateur aléatoire avec l'heure courante.
+    // Initialize the random generator with the current time.
     srand(time(NULL));
 
-    long Random1000[1000];                   // long, pas int
+    long Random1000[1000];                   // long, not int
 
-    // Ouvre le fichier contenant les nombres premiers.
+    // Open the file containing the prime numbers.
     FILE *f = fopen("prime_number.txt", "r");
     if (f == NULL) {
         printf("Error opening file.\n");
         return 1;
     }
 
-    // Lit les 1000 premières valeurs et les stocke dans le tableau.
+    // Read the first 1000 values and store them in the array.
     for (int i = 0; i < 1000; i++) {
         if (fscanf(f, "%ld", &Random1000[i]) != 1) {
             printf("Error reading prime number from file.\n");
@@ -38,17 +38,17 @@ int main(void)
     }
     fclose(f);
 
-    // Mélange les valeurs avant de les écrire dans le fichier de sortie.
+    // Shuffle the values before writing them to the output file.
     RandomVector(Random1000, 1000);
 
-   // Crée le fichier de sortie en mode écriture.
-   FILE *out = fopen("data/Random1000.txt", "w");   // "w" = créer / écrire
+   // Create the output file in write mode.
+   FILE *out = fopen("data/Random1000.txt", "w");   // "w" = create / write
    if (out == NULL) {
-      printf("Error creating Random100.txt\n");
+      printf("Error creating Random1000.txt\n");
      return 1;
     }
 
-   // Écrit une valeur par ligne.
+   // Write one value per line.
    for (int i = 0; i < 1000; i++)
      fprintf(out, "%ld\n", Random1000[i]);  
 

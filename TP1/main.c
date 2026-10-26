@@ -8,26 +8,26 @@
 bool estPremierA1(long N) {
     if (N == 0 || N == 1) { return false; }
     
-    for (long i = 2; i <= N-1; i++) { // (n-1)-(2)+1 units   from (b-a)+1 tq a < b
+    for (long i = 2; i <= N-1; i++) { // (n-1)-(2)+1 iterations, from (b-a)+1 when a < b
         if (N % i == 0) { 
             return false;
         }
     } 
     return true; 
 }
-// Complexité = (n-2)  ---> o(n)
+// Complexity = (n-2) ---> O(n)
 
 bool estPremierA2(long N) {
     if (N == 0 || N == 1) { return false; }
     
-    for (long i = 2; i <= N/2; i++) { // (n/2)-(2)+1 units = (n/2)-1
+    for (long i = 2; i <= N/2; i++) { // (n/2)-(2)+1 iterations = (n/2)-1
         if (N % i == 0) { 
             return false;
         }
     } 
     return true; 
 }
-// o(n/2) --> o(n)
+// O(n/2) --> O(n)
 
 bool estPremierA3(long N) {
     if (N <= 1) return false;
@@ -36,7 +36,7 @@ bool estPremierA3(long N) {
     }
     return true;
 }
-// o(sqrt(n))
+// O(sqrt(n))
 
 
 
@@ -44,14 +44,14 @@ bool estPremierA4(long N) {
     if (N == 2) return true;
     if (N < 2 || N % 2 == 0) return false;
 
-    for (long i = 3; i <= sqrt(N); i+=2) { // += 2 pour assurer le test juste pour des nombres impaires (3, 5, 7, ...)
+    for (long i = 3; i <= sqrt(N); i+=2) { // += 2 tests only odd numbers (3, 5, 7, ...)
         if (N % i == 0) {
             return false;
         }
     }
     return true;
 }
-// o(sqrt(n))
+// O(sqrt(n))
 
 double measure_prime_time(long N, int repeats, bool (*algo)(long)) {
     double total = 0;
@@ -68,13 +68,13 @@ double measure_prime_time(long N, int repeats, bool (*algo)(long)) {
 int main(int argc, char *argv[]) {
 
      if(argc != 2){
-        printf("add the txt file in args\n");
+        printf("Please provide the TXT file as an argument.\n");
         return 1;
     }
 
     FILE* file = fopen(argv[1], "r");
     if (!file) {
-        printf("File doesn't exist!\n"); return 1;
+        printf("The file does not exist.\n"); return 1;
     }
 
     long* nums = malloc(sizeof(long) * 10000);

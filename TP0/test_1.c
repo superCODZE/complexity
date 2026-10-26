@@ -4,11 +4,11 @@
 
 #define MAX 78330      
 
-// Mélange les k premières valeurs du tableau.
+// Shuffle the first k values of the array.
 void RandomVector(long long *tab, int n, int k)
 {
     for (int i = 0; i < k; i++) {
-        // Choisit une position au hasard parmi les valeurs disponibles.
+        // Choose a random position among the available values.
         int j = i + rand() % (n - i);   
         long long tmp = tab[i];              
         tab[i] = tab[j];
@@ -18,16 +18,16 @@ void RandomVector(long long *tab, int n, int k)
 
 int main(void)
 {
-    // Initialise le générateur aléatoire avec l'heure courante.
+    // Initialize the random generator with the current time.
     srand(time(NULL));
 
-    // Prépare le tableau qui contiendra les nombres premiers sélectionnés.
+    // Prepare the array that will contain the selected prime numbers.
     static long long tab[MAX];
     long count = 0;
     long p;
     
 
-    // Ouvre le fichier contenant les nombres premiers.
+    // Open the file containing the prime numbers.
     FILE *f = fopen("prime_number.txt", "r");
     if (f == NULL) {
         printf("Error opening prime_number.txt.\n");
@@ -35,32 +35,31 @@ int main(void)
     }
    
 
-    // Conserve les nombres premiers compris entre 1000 et 1 000 000.
+    // Keep the prime numbers between 1,000 and 1,000,000.
     while (fscanf(f, "%ld", &p) == 1) {
         if (p > 1000000) break;         
-        if (p >= 1000 && count < MAX)
+        if (p >= 1000 && count < MAX) {
             tab[count] = p;
-
-
             count++;
+        }
         
     }
     fclose(f);
 
-    // Mélange le tableau pour obtenir une sélection aléatoire de 100 valeurs.
+    // Shuffle the array to obtain a random selection of 100 values.
     RandomVector(tab, count, 100);
     
-    // Crée le fichier contenant les 100 nombres sélectionnés.
+    // Create the file containing the 100 selected numbers.
     FILE *out = fopen("data/test1.txt", "w");   
    if (out == NULL) {
-      printf("Error creating test1.txt\n");
+       printf("Error creating test1.txt\n");
      return 1;
     }
 
-   // Écrit une valeur par ligne.
+   // Write one value per line.
    for (int i = 0; i < 100; i++){
      fprintf(out, "%lld\n", tab[i]);
-        // un nombre par ligne
+        // One number per line.
     
    }
 
